@@ -1,0 +1,26 @@
+{
+  "activePreset": "local",
+  "presets": {
+    "local": {
+      "fast": {
+        "model": "ollama/qwen2.5-coder:7b",
+        "description": "探索、搜索、读取文件",
+        "whenToUse": ["search", "grep", "read", "explore"]
+      },
+      "medium": {
+        "model": "ollama/qwen2.5-coder:7b",
+        "description": "实现、重构、测试",
+        "whenToUse": ["implement", "edit", "test", "fix"]
+      },
+      "heavy": {
+        "model": "ollama/qwen2.5-coder:7b",
+        "description": "架构、复杂调试",
+        "whenToUse": ["architecture", "debug", "review"]
+      }
+    }
+  },
+  "rules": [
+    "read-only work -> @fast, implementation -> @medium, arch/debug -> @heavy",
+    "delegate with Task(subagent_type=\"fast\"|\"medium\"|\"heavy\", prompt=...)"
+  ]
+}
